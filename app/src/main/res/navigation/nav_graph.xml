@@ -7,8 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.janberktaskmudassirsatti.home.HomeFragment"
+        android:name="com.example.janberktaskmudassirsatti.ui.fragments.home.HomeFragment"
         android:label="Home Fragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_viewScreenshot"
+            app:destination="@id/navigation_viewScreenshot" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_viewScreenshot"
+        android:name="com.example.janberktaskmudassirsatti.ui.fragments.viewscreenshoot.ViewScreenshotFragment"
+        android:label="ScreenShot View Fragment"
+        tools:layout="@layout/fragment_view_screenshot">
+        <argument
+            android:name="imageUri"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="imageTitle"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
 </navigation>

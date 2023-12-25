@@ -1,8 +1,8 @@
 package com.example.janberktaskmudassirsatti.di
 
 import android.content.Context
-import com.example.janberktaskmudassirsatti.di.repository.ScreenshotRepository
-import com.example.janberktaskmudassirsatti.di.repository.ScreenshotRepositoryImpl
+import com.example.janberktaskmudassirsatti.di.repositories.ScreenshotRepository
+import com.example.janberktaskmudassirsatti.di.repositories.ScreenshotRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,11 +17,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideImageRepository(
+    fun provideScreenshotRepository(
         @ApplicationContext context: Context
     ): ScreenshotRepository {
         return ScreenshotRepositoryImpl(context)
     }
-
 }
 

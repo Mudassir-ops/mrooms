@@ -1,4 +1,4 @@
-package com.example.janberktaskmudassirsatti
+package com.example.janberktaskmudassirsatti.ui.activities
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

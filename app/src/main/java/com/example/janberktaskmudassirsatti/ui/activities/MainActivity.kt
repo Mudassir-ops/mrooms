@@ -1,7 +1,5 @@
-package com.example.janberktaskmudassirsatti
+package com.example.janberktaskmudassirsatti.ui.activities
 
-import android.content.Context
-import android.media.projection.MediaProjectionManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.janberktaskmudassirsatti.databinding.ActivityMainBinding

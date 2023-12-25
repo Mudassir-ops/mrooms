@@ -4,4 +4,17 @@
     <string name="nothing">nothing</string>
     <string name="screenshot">Screenshot</string>
     <string name="exit">  Exit  </string>
+    <string name="screenshot_not_saved">Screenshot Not Saved</string>
+    <string name="delete">Delete</string>
+
+    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="native_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="ad">Ad</string>
+    <string name="janbark_task">JanBark Task</string>
+    <string name="large_notification_showing_a_title_and_a_body">Large notification, showing a title and a body.</string>
+    <string name="this_is_the_body_the_height_is_manually_forced_to_300dp">This is the body. The height is manually forced to 300dp.</string>
+    <string name="open">Open</string>
+    <string name="share">share</string>
+
 </resources>

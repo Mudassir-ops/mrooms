@@ -1,12 +1,12 @@
-package com.example.janberktaskmudassirsatti.home
+package com.example.janberktaskmudassirsatti.ui.fragments.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.janberktaskmudassirsatti.Appconstants.DataState
-import com.example.janberktaskmudassirsatti.di.repository.ScreenshotRepository
+import com.example.janberktaskmudassirsatti.di.repositories.ScreenshotRepository
 import com.example.janberktaskmudassirsatti.models.ImageModel
+import com.example.janberktaskmudassirsatti.utill.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(private val screenshotRepository: Screen
     private fun fetchAllScreenShots() {
         viewModelScope.launch {
             try {
-                screenshotRepository.getAllImages()
+                screenshotRepository.fetchAllScreenshots()
                     .flowOn(Dispatchers.IO)
                     .collect { images ->
                         _screenShotData.value = images

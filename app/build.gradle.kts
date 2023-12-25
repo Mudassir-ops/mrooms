@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -13,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.example.janberktaskmudassirsatti"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         multiDexEnabled = true
@@ -48,6 +49,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -67,6 +69,8 @@ dependencies {
 
     /** glide dependencies */
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    /** ads dependencies */
+    implementation("com.google.android.gms:play-services-ads:22.6.0")
 }
 
 kapt {
