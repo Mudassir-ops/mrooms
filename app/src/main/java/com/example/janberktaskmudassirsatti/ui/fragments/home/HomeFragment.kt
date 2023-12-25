@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ import com.example.janberktaskmudassirsatti.models.ScreenshotViewsDataModel
 import com.example.janberktaskmudassirsatti.service.MyScreenShootServiceJanBerk
 import com.example.janberktaskmudassirsatti.utill.ActionType
 import com.example.janberktaskmudassirsatti.utill.AllKotlinCallBacks.listener
+import com.example.janberktaskmudassirsatti.utill.AppConstants.TAG
 import com.example.janberktaskmudassirsatti.utill.DataState
 import com.example.janberktaskmudassirsatti.utill.checkPermissionGranted
 import com.example.janberktaskmudassirsatti.utill.getImgUri
@@ -38,7 +40,6 @@ import com.example.janberktaskmudassirsatti.utill.invisible
 import com.example.janberktaskmudassirsatti.utill.isServiceRunning
 import com.example.janberktaskmudassirsatti.utill.multiPermission
 import com.example.janberktaskmudassirsatti.utill.permissionArray
-import com.example.janberktaskmudassirsatti.utill.permissionDialog
 import com.example.janberktaskmudassirsatti.utill.shareImage
 import com.example.janberktaskmudassirsatti.utill.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,7 +55,9 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private val activityResultLaunch: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (Settings.canDrawOverlays(context ?: return@registerForActivityResult)) {
+        if (!Settings.canDrawOverlays(context ?: return@registerForActivityResult)) {
+            Log.e(TAG, "Still Not Allowed ")
+        } else {
             if (context?.checkPermissionGranted(permissionArray) == true) {
                 val isForegroundServiceRunning = isServiceRunning(
                     context ?: return@registerForActivityResult,
@@ -67,40 +70,29 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     )
                 }
             } else {
-                activity?.permissionDialog(messageText = getString(R.string.need_permission),
-                    noButtonText = getString(R.string.allow),
-                    yesButtonText = getString(R.string.dont_allow),
-                    isCancelable = false,
-                    onYesButtonClick = {
-                        context?.multiPermission(permissionArray = permissionArray,
-                            onMultiPermissionGranted = {
-                                val isForegroundServiceRunning = isServiceRunning(
-                                    context ?: return@multiPermission,
-                                    MyScreenShootServiceJanBerk::class.java
-                                )
-                                if (!isForegroundServiceRunning) {
-                                    ContextCompat.startForegroundService(
-                                        context ?: return@multiPermission,
-                                        Intent(context, MyScreenShootServiceJanBerk::class.java)
-                                    )
-                                }
-                            },
-                            onMultiPermissionDenied = {
-
-                            },
-                            onMultiPermissionError = {
-
-                            })
-                    },
-                    onNoButtonClick = {
-                        binding?.apply {
-                            permissionLayout.show()
+                context?.multiPermission(permissionArray = permissionArray,
+                    onMultiPermissionGranted = {
+                        listener?.invoke()
+                        val isForegroundServiceRunning = isServiceRunning(
+                            context ?: return@multiPermission,
+                            MyScreenShootServiceJanBerk::class.java
+                        )
+                        if (!isForegroundServiceRunning) {
+                            ContextCompat.startForegroundService(
+                                context ?: return@multiPermission,
+                                Intent(context, MyScreenShootServiceJanBerk::class.java)
+                            )
                         }
+                    },
+                    onMultiPermissionDenied = {
+                        binding?.permissionLayout?.show()
+                    },
+                    onMultiPermissionError = {
+                        binding?.permissionLayout?.show()
                     })
             }
-        } else {
-            binding?.permissionLayout?.show()
         }
+
     }
     private var dataList = ArrayList<ScreenshotViewsDataModel>()
     private val screenshotsAdapter: ScreenshotsAdapter by lazy {
@@ -231,6 +223,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                                 hasFixedSize()
                             }
                         }
+                        binding?.noDataLayout?.gone()
                         binding?.loadingIndicator?.gone()
                         binding?.rvScreenshots?.show()
                         screenshotsAdapter.setData(dataList)

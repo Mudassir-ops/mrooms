@@ -1,6 +1,5 @@
 package com.example.janberktaskmudassirsatti.di.repositories
 
-import android.app.Activity.RESULT_OK
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.ContentValues
@@ -11,9 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import com.example.janberktaskmudassirsatti.models.ImageModel
 import com.example.janberktaskmudassirsatti.utill.AppConstants.DIRECTORY_NAME
 import com.example.janberktaskmudassirsatti.utill.DataState
@@ -28,8 +24,7 @@ import javax.inject.Inject
 class ScreenshotRepositoryImpl @Inject constructor(
     private val context: Context,
 
-) : ScreenshotRepository {
-
+    ) : ScreenshotRepository {
 
 
     /*** my method to extract all  screenshot from My Custom Folder */

@@ -156,7 +156,7 @@ fun Context.shareImage(imagePath: String, shareTitle: String = "Share Image") {
     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareTitle)
     shareIntent.putExtra(Intent.EXTRA_TEXT, "Enjoy Your Image")
     val chooserIntent = Intent.createChooser(shareIntent, shareTitle)
-    chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION,)
+    chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     startActivity(chooserIntent)
 }
 
