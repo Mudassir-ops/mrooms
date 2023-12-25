@@ -38,8 +38,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-typealias ImageCaptureCallback = () -> Unit
-
 @AndroidEntryPoint
 class ScreenShotActivity : AppCompatActivity() {
 
@@ -206,23 +204,5 @@ class ScreenShotActivity : AppCompatActivity() {
             }
         }
     }
-//    override fun onResume() {
-//        super.onResume()
-//        val stopServiceReceiver = object : BroadcastReceiver() {
-//            override fun onReceive(context: Context?, intent: Intent?) {
-//                if (intent?.action == ACTION_STOP_FOREGROUND) {
-//                    stopForegroundService()
-//                }
-//            }
-//        }
-//
-//        val filter = IntentFilter(ACTION_STOP_FOREGROUND)
-//        registerReceiver(stopServiceReceiver, filter)
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        unregisterReceiver(stopServiceReceiver)
-//    }
 
 }

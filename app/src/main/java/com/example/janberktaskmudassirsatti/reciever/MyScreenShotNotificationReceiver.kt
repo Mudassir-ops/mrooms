@@ -14,7 +14,9 @@ class MyScreenShotNotificationReceiver : BroadcastReceiver() {
         when (intent?.action) {
             ACTION_SCREENSHOT -> {
                 val dialogIntent = Intent(context, ScreenShotActivity::class.java)
-                dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+               // dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                dialogIntent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 context?.startActivity(dialogIntent)
             }
 

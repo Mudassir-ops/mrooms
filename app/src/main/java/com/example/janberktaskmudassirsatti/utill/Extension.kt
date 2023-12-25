@@ -40,7 +40,8 @@ fun Bitmap?.compressBitmapToByteArray(): ByteArray {
 /** Extension to stop media projection and close current activity*/
 fun Activity.stopCapturingImages(mediaProjection: MediaProjection?) {
     mediaProjection?.stop()
-    finish()
+    this.finishAffinity()
+    this.finish()
 }
 
 fun String.printLog() {
