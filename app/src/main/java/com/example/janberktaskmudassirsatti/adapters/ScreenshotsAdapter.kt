@@ -82,7 +82,9 @@ class ScreenshotsAdapter(
                     callback.invoke(item, action)
                 })
             }
-
+            itemView.setOnClickListener {
+                callback.invoke(item, ActionType.ACTION_OPEN)
+            }
         }
     }
 

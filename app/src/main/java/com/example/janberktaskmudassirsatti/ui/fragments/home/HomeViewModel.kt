@@ -1,5 +1,7 @@
 package com.example.janberktaskmudassirsatti.ui.fragments.home
 
+import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,9 +17,13 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val screenshotRepository: ScreenshotRepository) :
+class HomeViewModel @Inject constructor(
+    private val application: Application,
+    private val screenshotRepository: ScreenshotRepository
+) :
     ViewModel() {
 
+    val uris = arrayListOf<Uri?>()
     private val _screenShotData: MutableLiveData<DataState<List<ImageModel>>> = MutableLiveData()
     val screenShotDataState: LiveData<DataState<List<ImageModel>>>
         get() = _screenShotData
@@ -26,7 +32,8 @@ class HomeViewModel @Inject constructor(private val screenshotRepository: Screen
         fetchAllScreenShots()
     }
 
-    private fun fetchAllScreenShots() {
+    fun fetchAllScreenShots() {
+        _screenShotData.value = DataState.Loading
         viewModelScope.launch {
             try {
                 screenshotRepository.fetchAllScreenshots()
@@ -39,5 +46,10 @@ class HomeViewModel @Inject constructor(private val screenshotRepository: Screen
             }
 
         }
+    }
+
+
+    fun deleteImage() {
+
     }
 }

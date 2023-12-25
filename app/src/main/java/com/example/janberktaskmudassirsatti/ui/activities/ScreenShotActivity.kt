@@ -2,10 +2,8 @@ package com.example.janberktaskmudassirsatti.ui.activities
 
 
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -28,7 +26,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.janberktaskmudassirsatti.databinding.ActivityScreenShotBinding
-import com.example.janberktaskmudassirsatti.utill.AppConstants.ACTION_STOP_FOREGROUND
+import com.example.janberktaskmudassirsatti.utill.AllKotlinCallBacks.listener
 import com.example.janberktaskmudassirsatti.utill.AppConstants.MEDIA_PROJECTION_SCREEN_NAME
 import com.example.janberktaskmudassirsatti.utill.AppConstants.TAG
 import com.example.janberktaskmudassirsatti.utill.DataState
@@ -39,6 +37,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
+typealias ImageCaptureCallback = () -> Unit
 
 @AndroidEntryPoint
 class ScreenShotActivity : AppCompatActivity() {
@@ -77,7 +77,9 @@ class ScreenShotActivity : AppCompatActivity() {
         screenshotViewModel.isScreenshotSaved.observe(this) { dataState ->
             when (dataState) {
                 is DataState.Success<Boolean> -> {
+                    listener?.invoke()  //----This is to update if our app open and user take screenshot from notification
                     stopCapturingImages(mediaProjection = mMediaProjection)
+
                 }
 
                 is DataState.Error -> {

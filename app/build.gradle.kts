@@ -67,10 +67,13 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:1.0.5")
     implementation("com.intuit.sdp:sdp-android:1.0.5")
 
-    /** glide dependencies */
+    /** glide dependency */
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    /** ads dependencies */
+    /** ads dependency */
     implementation("com.google.android.gms:play-services-ads:22.6.0")
+
+    /** dexter for permission dependency */
+    implementation("com.karumi:dexter:6.2.3")
 }
 
 kapt {

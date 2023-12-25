@@ -26,7 +26,7 @@ fun Activity.loadNativeAd(onAdLoaded: (NativeAd?) -> Unit) {
     }
     val builder = AdLoader.Builder(this, getString(R.string.native_id))
     builder.forNativeAd { nativeAd ->
-        "Native Ad Loaded".printLog()
+        getString(R.string.native_ad_loaded).printLog()
         if (isDestroyed || isFinishing || isChangingConfigurations) {
             nativeAd.destroy()
             return@forNativeAd
@@ -48,9 +48,9 @@ fun Activity.loadNativeAd(onAdLoaded: (NativeAd?) -> Unit) {
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
             isAdLoaded = false
             val error = """
-           domain: ${loadAdError.domain}, code: ${loadAdError.code}, message: ${loadAdError.message}
+            ${loadAdError.domain}, : ${loadAdError.code}, message: ${loadAdError.message}
           """"
-            "Failed to load native ad with error $error".printLog()
+            getString(R.string.failed_to_load_native_ad_with_error, error).printLog()
         }
     }).build()
 

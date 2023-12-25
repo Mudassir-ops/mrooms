@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.example.janberktaskmudassirsatti.R
+import com.example.janberktaskmudassirsatti.utill.AppConstants.TAG
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -27,14 +28,14 @@ fun Context.loadInterAd() {
         adRequest,
         object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d("TAG", adError.toString())
+                Log.d(TAG, adError.toString())
                 interstitialAd = null
                 adIsLoading = false
 
             }
 
             override fun onAdLoaded(interstitialAd1: InterstitialAd) {
-                Log.d("TAG", "Ad was loaded.")
+                Log.d(TAG, "Ad was loaded.")
                 interstitialAd = interstitialAd1
                 adIsLoading = false
             }
@@ -47,30 +48,32 @@ fun Activity.showInterAd() {
         interstitialAd?.show(this)
         interstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdClicked() {
-                Log.d("TAG", "Ad was clicked.")
+
+                Log.d(TAG, getString(R.string.ad_clicked))
             }
+
             override fun onAdDismissedFullScreenContent() {
-                Log.d("TAG", "Ad dismissed fullscreen content.")
+                Log.d(TAG, getString(R.string.ad_dismissed_fullscreen_content))
                 interstitialAd = null
                 loadInterAd()
             }
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                Log.e("TAG", "Ad failed to show fullscreen content.")
+                Log.e(TAG, getString(R.string.ad_failed_to_show_fullscreen_content))
                 interstitialAd = null
 
             }
 
             override fun onAdImpression() {
-                Log.d("TAG", "Ad recorded an impression.")
+                Log.d(TAG, getString(R.string.ad_recorded_an_impression))
             }
 
             override fun onAdShowedFullScreenContent() {
-                Log.d("TAG", "Ad showed fullscreen content.")
+                Log.d(TAG, getString(R.string.ad_showed_fullscreen_content))
             }
         }
     } else {
-        Log.d("TAG", "The interstitial ad wasn't ready yet.")
+        Log.d(TAG, getString(R.string.the_interstitial_ad_wasn_t_ready_yet))
         loadInterAd()
     }
 }

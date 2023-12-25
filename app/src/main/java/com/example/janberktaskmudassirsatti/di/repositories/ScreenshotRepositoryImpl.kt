@@ -1,5 +1,6 @@
 package com.example.janberktaskmudassirsatti.di.repositories
 
+import android.app.Activity.RESULT_OK
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.ContentValues
@@ -10,6 +11,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.janberktaskmudassirsatti.models.ImageModel
 import com.example.janberktaskmudassirsatti.utill.AppConstants.DIRECTORY_NAME
 import com.example.janberktaskmudassirsatti.utill.DataState
@@ -22,8 +26,12 @@ import java.util.Date
 import javax.inject.Inject
 
 class ScreenshotRepositoryImpl @Inject constructor(
-    private val context: Context
+    private val context: Context,
+
 ) : ScreenshotRepository {
+
+
+
     /*** my method to extract all  screenshot from My Custom Folder */
     override fun fetchAllScreenshots(): Flow<DataState<List<ImageModel>>> = flow {
         val imagesList = mutableListOf<ImageModel>()
@@ -73,6 +81,10 @@ class ScreenshotRepositoryImpl @Inject constructor(
         } else {
             emit(DataState.Success(false))
         }
+    }
+
+    override suspend fun deleteImage(imageUri: String): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
     }
 
     private suspend fun saveImageToGallery(

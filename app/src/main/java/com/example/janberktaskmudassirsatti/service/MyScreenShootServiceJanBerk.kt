@@ -16,7 +16,7 @@ class MyScreenShootServiceJanBerk : Service() {
     override fun onCreate() {
         super.onCreate()
         val notification = notificationRepository.buildNotification()
-        startForeground(1, notification?.build())
+        startForeground(1, notification.build())
     }
 
     override fun onBind(intent: Intent): IBinder? = null

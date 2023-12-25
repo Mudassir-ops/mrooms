@@ -16,5 +16,19 @@
     <string name="this_is_the_body_the_height_is_manually_forced_to_300dp">This is the body. The height is manually forced to 300dp.</string>
     <string name="open">Open</string>
     <string name="share">share</string>
+    <string name="permission_not_allowed">Permissions Not Allowed</string>
+    <string name="no_data_available">No Data Available</string>
+    <string name="need_permission">You need to give storage permission in order to get all Images files.</string>
+    <string name="allow">Allow</string>
+    <string name="dont_allow">Don\'t Allow</string>
+    <string name="ad_clicked">Ad clicked.</string>
+    <string name="ad_dismissed_fullscreen_content">Ad dismissed fullscreen content.</string>
+    <string name="ad_failed_to_show_fullscreen_content">Ad failed to show fullscreen content.</string>
+    <string name="ad_recorded_an_impression">Ad recorded an impression.</string>
+    <string name="ad_showed_fullscreen_content">Ad showed fullscreen content.</string>
+    <string name="the_interstitial_ad_wasn_t_ready_yet">The interstitial ad wasn\'t ready yet.</string>
+    <string name="native_ad_loaded">Native Ad Loaded</string>
+    <string name="failed_to_load_native_ad_with_error">Failed to load native ad with error %1$s</string>
+
 
 </resources>

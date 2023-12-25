@@ -23,7 +23,7 @@ fun loadImage(view: AppCompatImageView, imageUrl: String?) {
     imageUrl?.let {
         Glide.with(view.context)
             .load(it)
-            .placeholder(R.mipmap.ic_launcher)
+            .placeholder(R.drawable.imageplace)
             .error(R.mipmap.ic_launcher)
             .into(view)
     }
