@@ -4,6 +4,21 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class UserWithPets(
+//    @Embedded var user: User? = null,
+//
+//    @Relation(
+//        parentColumn = "id", entityColumn = "userId", entity = Pet::class
+//    ) var pets: List<PetWithCategories>? = null,
+//
+//    @Relation(
+//        parentColumn = "id", entityColumn = "petId", entity = Category::class
+//    ) var categories: List<CategoriesWithSubCategories>? = null,
+//
+//    @Relation(
+//        parentColumn = "id", entityColumn = "catId"
+//    ) var subCategories: List<SubCategory>? = null
+
+
     @Embedded var user: User? = null,
 
     @Relation(
@@ -15,9 +30,8 @@ data class UserWithPets(
     ) var categories: List<CategoriesWithSubCategories>? = null,
 
     @Relation(
-        parentColumn = "id", entityColumn = "catId"
+        parentColumn = "id", entityColumn = "catId", entity = SubCategory::class
     ) var subCategories: List<SubCategory>? = null
-
 )
 
 data class UserWithPets1(

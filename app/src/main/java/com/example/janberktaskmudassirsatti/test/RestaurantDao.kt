@@ -43,7 +43,7 @@ interface RestaurantDao {
 
 
     @Query("SELECT * FROM User")
-    suspend fun loadUsersWithPets(): List<UserWithPets?>?
+    suspend fun loadUsersWithPets(): List<UserWithPets1?>?
 
 
 //    @Transaction
