@@ -4,35 +4,50 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
+
 import com.example.janberktaskmudassirsatti.test.entities.Allergen
-import com.example.janberktaskmudassirsatti.test.entities.Category
 import com.example.janberktaskmudassirsatti.test.entities.Menu
-import com.example.janberktaskmudassirsatti.test.entities.Restaurant
-import com.example.janberktaskmudassirsatti.test.entities.Tag
-import com.example.janberktaskmudassirsatti.test.entities.relations.MenuWithAllergens
-import kotlinx.coroutines.flow.Flow
+import com.example.janberktaskmudassirsatti.test.entities.relations.Pet
+import com.example.janberktaskmudassirsatti.test.entities.relations.SubCategory
+import com.example.janberktaskmudassirsatti.test.entities.relations.User
+import com.example.janberktaskmudassirsatti.test.entities.relations.UserWithPets
+import com.example.janberktaskmudassirsatti.test.entities.relations.UserWithPets1
 
 @Dao
 interface RestaurantDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRestaurant(restaurant: Restaurant)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMenu(menu: Menu)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCategory(category: Category)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTag(tag: Tag)
+    suspend fun insertTag(tag: com.example.janberktaskmudassirsatti.test.entities.Tag)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllergen(allergen: Allergen)
 
-    @Transaction
-    @Query("SELECT * FROM Menu WHERE id = :menuId")
-    fun getMenuWithAllergens(menuId: Long): Flow<MenuWithAllergens>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUser(user: User)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPet(pet: Pet)
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCategory(category: com.example.janberktaskmudassirsatti.test.entities.relations.Category)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSubCategory(subCategory: SubCategory)
+
+
+    @Query("SELECT * FROM User")
+    suspend fun loadUsersWithPets(): List<UserWithPets?>?
+
+
+//    @Transaction
+//    @Query("SELECT * FROM menu_table")
+//    fun getRestaurantsWithMenus(): Flow<List<MenuWithCategoriesAndAllergens>>
 
 }

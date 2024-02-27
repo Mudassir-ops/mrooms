@@ -1,19 +1,20 @@
 package com.example.janberktaskmudassirsatti.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.janberktaskmudassirsatti.databinding.ActivityMainBinding
 import com.example.janberktaskmudassirsatti.test.SchoolDatabase
-import com.example.janberktaskmudassirsatti.test.entities.Allergen
-import com.example.janberktaskmudassirsatti.test.entities.Category
 import com.example.janberktaskmudassirsatti.test.entities.Menu
-import com.example.janberktaskmudassirsatti.test.entities.Restaurant
-import com.example.janberktaskmudassirsatti.test.entities.Tag
-import com.example.janberktaskmudassirsatti.test.entities.Time
+import com.example.janberktaskmudassirsatti.test.entities.relations.Category
+import com.example.janberktaskmudassirsatti.test.entities.relations.Pet
+import com.example.janberktaskmudassirsatti.test.entities.relations.SubCategory
+import com.example.janberktaskmudassirsatti.test.entities.relations.User
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
@@ -27,68 +28,44 @@ class MainActivity : AppCompatActivity() {
 
         val dao = SchoolDatabase.getInstance(this).restaurantDao()
 
-        lifecycleScope.launch {
 
-            dao.insertRestaurant(
-                restaurant = Restaurant(
-                    id = 1,
-                    name = "Queta Cafe",
-                    address = "morgah",
-                    phoneNo = "03125307585",
-                    status = "open",
-                    cuisineType = "sjsj",
-                    latitude = 0.0,
-                    longitude = 0.0,
-                    createdAt = "2727-29-2020",
-                    updatedAt = "22-292-92"
-                )
-            )
+        binding?.apply {
+            button.setOnClickListener {
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
 
-            dao.insertCategory(
-                category = Category(
-                    id = 8020,
-                    menuId = 9097,
-                    categoryName = "Josephine Pittman",
-                    color = "wisi",
-                    image = "dicunt",
-                    showOnMenu = false,
-                    sortOrder = 1194,
-                    startTime = "meliore",
-                    endTime = "expetendis",
-                    status = "taciti",
-                    createdAt = "tantas",
-                    updatedAt = "blandit"
-                )
-            )
-            dao.insertAllergen(
-                allergen = Allergen(
-                    id = 7892,
-                    allergenName = "Victoria Oneal", menuId = 9130
-                )
-            )
-            dao.insertTag(
-                tag = Tag(
-                    id = 1979,
-                    tagName = "Mohammad O'Donnell"
-                )
-            )
+                        dao.insertUser(User("mudassir"))
+                        dao.insertPet(
+                            Pet(
+                                id = "petOne", userId = "mudassir", petName = "cat"
 
-            dao.insertMenu(
-                menu = Menu(
-                    id = 9130,
-                    restaurantId = 4185,
-                    menuName = "Isaac Davidson",
-                    posButtonColor = "varius",
-                    menuDescription = "eam",
-                    status = "venenatis",
-                    createdAt = "patrioque",
-                    updatedAt = "enim"
-                )
-            )
-            dao.getMenuWithAllergens(menuId = 9130).collect { menuWithAllergens ->
-                println("Menu: ${menuWithAllergens.menu}")
+                            )
+                        )
+                        dao.insertCategory(
+                            Category(
+                                id = "catId", petId = "petOne", categoryName = "Saban"
+
+                            )
+                        )
+                        dao.insertSubCategory(
+                           SubCategory(id = "subCatId", catId = "catId", subCategoryName = "sub kutta")
+                        )
+
+                    }
+
+                }
+            }
+
+            button2.setOnClickListener {
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        val reuslt = dao.loadUsersWithPets()
+                        Log.e("ResultLIST---->", "onCreate: $reuslt")
+                    }
+
+                }
             }
         }
-    }
 
+    }
 }

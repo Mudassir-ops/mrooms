@@ -1,0 +1,33 @@
+{
+  "data": {
+    "id": 1,
+    "name": "Flights Campbell",
+    "menus": [
+      {
+        "id": 1,
+        "menuName": "Main Menu",
+        "setting": {
+          "id": 1,
+          "type": "Menu",
+          "status": "Active",
+          "visibilitySettings": [
+            {
+              "id": 1,
+              "isVisible": true,
+              "isDefault": false,
+              "daySchedules": [
+                {
+                  "id": 1,
+                  "day": "Mon",
+                  "startTime": "09:00:00",
+                  "endTime": "02:00:00",
+                  "allDay": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

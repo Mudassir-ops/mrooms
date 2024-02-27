@@ -2,94 +2,26 @@
   "data": {
     "id": 1,
     "name": "Flights Campbell",
-    "address": "368E Campbell Ave, Campbell, CA, 95008, USA",
-    "image": "https://aio-dev-menu-items-images.s3.us-west-2.amazonaws.com/flights.png",
-    "orderDelayedTime": 5,
-    "onlineOrder": false,
-    "restaurantModes": "fullServe",
-    "autoFire": false,
-    "autoFireTimer": {
-      "minutes": 5
-    },
-    "onlineOrderTimer": {
-      "hours": 16
-    },
-    "ticketSounds": "bell",
-    "latitude": 37.2869137,
-    "longitude": -121.9460157,
-    "createdAt": "2024-02-19T12:45:57.249Z",
-    "updatedAt": "2024-02-19T12:45:57.249Z",
-    "phoneNo": "4083641564",
-    "convenienceFee": null,
-    "otherMode": null,
-    "building": null,
-    "city": "Campbell",
-    "state": "CA",
-    "zipCode": "95008",
-    "status": "open",
-    "isPickupEnabled": false,
-    "isDeliveryEnabled": false,
-    "autoGratuity": true,
-    "largePartySizeLimit": 1,
-    "accountId": "1",
-    "cuisineType": "1",
-    "timezone": null,
-    "restaurantBannerImages": [
-    ],
     "menus": [
       {
         "id": 1,
         "menuName": "Main Menu",
-        "posButtonColor": "Red",
-        "menuDescription": "Campbell Menu",
-        "createdAt": "2024-02-20T10:01:55.941Z",
-        "updatedAt": "2024-02-20T10:01:55.941Z",
-        "startTime": null,
-        "endTime": null,
-        "sortOrder": null,
-        "status": "Active",
-        "createdBy": null,
-        "updatedBy": null,
-        "deletedBy": null,
-        "deletedAt": null,
         "setting": {
           "id": 1,
           "type": "Menu",
           "status": "Active",
-          "createdAt": null,
-          "updatedAt": null,
-          "deletedAt": null,
-          "createdBy": null,
-          "updatedBy": null,
-          "deletedBy": null,
           "visibilitySettings": [
             {
               "id": 1,
               "isVisible": true,
               "isDefault": false,
-              "channelVisibilityType": "onPrem",
-              "device": "Kiosk",
-              "status": "Active",
-              "createdAt": null,
-              "updatedAt": null,
-              "deletedAt": null,
-              "createdBy": null,
-              "updatedBy": null,
-              "deletedBy": null,
               "daySchedules": [
                 {
                   "id": 1,
                   "day": "Mon",
                   "startTime": "09:00:00",
                   "endTime": "02:00:00",
-                  "allDay": true,
-                  "status": "Active",
-                  "createdAt": null,
-                  "updatedAt": null,
-                  "deletedAt": null,
-                  "createdBy": null,
-                  "updatedBy": null,
-                  "deletedBy": null
+                  "allDay": true
                 }
               ]
             }
@@ -2628,8 +2560,5 @@
         ]
       }
     ]
-  },
-  "success": true,
-  "message": "Menu retrived successfully",
-  "error": null
+  }
 }
